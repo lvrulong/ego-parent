@@ -1,4 +1,4 @@
-package com.ego.manager.controller;
+package com.ego.manage.controller;
 
 import java.util.Map;
 

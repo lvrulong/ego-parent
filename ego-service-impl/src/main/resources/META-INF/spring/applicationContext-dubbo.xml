@@ -17,11 +17,21 @@
     <!-- 配置端口-Consumer调用Provider的服务端口-->
     <dubbo:protocol name="dubbo" port="20888"></dubbo:protocol>
     
+    <!-- 商品信息 -->
     <!-- 注册功能 ,注册接口，对外不提供具体的实现。使用aop功能，不能使用注解，会产生双向代理，Dubbo不能同时使用@Service和@Transactional-->
     <dubbo:service interface="com.ego.dubbo.service.TbItemDubboService" ref="tbItemDubboServiceImpl" timeout="10000000"></dubbo:service>
     <!-- spring管理该类 -->
     <bean id="tbItemDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemDubboServiceImpl"></bean>
     
+    <!-- 商品类目服务 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemCatDubboService" ref="tbItemCatDubboServiceImpl"></dubbo:service>
+    <bean id="tbItemCatDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemCatDubboServiceImpl"></bean>
+    
+    <!-- 商品描述 -->
+    <!-- 注册功能 ,注册接口，对外不提供具体的实现。使用aop功能，不能使用注解，会产生双向代理，Dubbo不能同时使用@Service和@Transactional-->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemDescDubboService" ref="tbItemDescDubboServiceImpl" timeout="10000000"></dubbo:service>
+    <!-- spring管理该类 -->
+    <bean id="tbItemDescDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemDescDubboServiceImpl"></bean>
     
     <!-- 加载spring配置文件 -->
     <import resource="../../applicationContext.xml"/>
