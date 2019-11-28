@@ -33,6 +33,10 @@
     <!-- spring管理该类 -->
     <bean id="tbItemDescDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemDescDubboServiceImpl"></bean>
     
+       <!-- 规格参数 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbItemParamDubboService" ref="tbItemParamDubboServiceImpl"></dubbo:service>
+    <bean id="tbItemParamDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemParamDubboServiceImpl"></bean>
+    
     <!-- 加载spring配置文件 -->
     <import resource="../../applicationContext.xml"/>
 </beans>
