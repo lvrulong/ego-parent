@@ -10,6 +10,7 @@
   </parent>
   <artifactId>ego-service-impl</artifactId>
   <dependencies>
+      <!-- 以来服务接口 -->
       <dependency>
 		    <groupId>com.ego</groupId>
 		    <artifactId>ego-service</artifactId>
