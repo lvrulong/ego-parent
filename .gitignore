@@ -1,5 +1,5 @@
-/.settings/
-target/ 
+**/.settings/
+**/target/ 
   
 # built application files  
 *.apk  
@@ -13,9 +13,8 @@ target/
 *.jar  
   
 # generated files  
-bin/  
-ego-commons/bin/ 
-gen/  
+**/bin/  
+**/gen/  
   
 # Eclipse project files  
 .classpath  
