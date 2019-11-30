@@ -12,6 +12,7 @@ import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.manager.service.TbItemService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
+import com.ego.pojo.TbItemParamItem;
 
 @Service
 public class TbItemServiceImpl implements TbItemService {
@@ -46,7 +47,7 @@ public class TbItemServiceImpl implements TbItemService {
 
 
 	@Override
-	public int save(TbItem tbItem, String desc) throws Exception {
+	public int save(TbItem tbItem, String desc, String itemParams) throws Exception {
 		//不考虑事务回滚
 //		long id = IDUtils.genItemId();
 //		tbItem.setId(id);
@@ -81,9 +82,15 @@ public class TbItemServiceImpl implements TbItemService {
 		tbItemDesc.setItemDesc(desc);
 		tbItemDesc.setCreated(date);
 		tbItemDesc.setUpdated(date);
+		
+		TbItemParamItem paramItem = new TbItemParamItem(); 
+		paramItem.setCreated(date);
+		paramItem.setUpdated(date);
+		paramItem.setItemId(id);
+		paramItem.setParamData(itemParams);
 		int index = 0 ;
 
-		index = tbItemDubboService.insTbItemDesc(tbItem, tbItemDesc);
+		index = tbItemDubboService.insTbItemDesc(tbItem, tbItemDesc, paramItem);
 		
 		return index;
 		
