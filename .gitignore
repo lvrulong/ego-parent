@@ -1,4 +1,4 @@
-.settings/  
+/.settings/
 target/ 
   
 # built application files  
@@ -14,6 +14,7 @@ target/
   
 # generated files  
 bin/  
+ego-commons/bin/ 
 gen/  
   
 # Eclipse project files  
