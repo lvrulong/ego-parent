@@ -1,6 +1,7 @@
 package com.ego.dubbo.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.pojo.TbItemParam;
 
 public interface TbItemParamDubboService {
 
@@ -11,4 +12,27 @@ public interface TbItemParamDubboService {
 	 * @return 包含：当前页显示数据和总条数
 	 */
 	EasyUIDataGrid showPage(int page,int rows);
+	
+	/**
+	 * 批量删除
+	 * @param ids
+	 * @return
+	 * @throws Exception 
+	 */
+	int delByIds(String ids) throws Exception;
+	
+	
+	/**
+	 * 根据类目id查询参数模板
+	 * @param catid
+	 * @return
+	 */
+	TbItemParam selByCatid(long catId);
+	
+	/**
+	 * 新增,支持主键自增
+	 * @param param
+	 * @return
+	 */
+	int insParam(TbItemParam param);
 }

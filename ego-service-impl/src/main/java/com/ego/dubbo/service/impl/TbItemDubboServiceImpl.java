@@ -20,6 +20,7 @@ public class TbItemDubboServiceImpl implements TbItemDubboService{
 	@Resource
 	private TbItemMapper tbItemMapper;
 	
+	@Resource
 	private TbItemDescMapper tbItemDescMapper;
 	
 	@Override
