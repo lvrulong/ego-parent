@@ -10,11 +10,11 @@
         http://code.alibabatech.com/schema/dubbo 
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!-- 给当前Consumer自定义个名字 -->
-    <dubbo:application name="dubbo-manage"/>
+    <dubbo:application name="dubbo-portal"/>
     <!-- 配置注册中心  -->
     <dubbo:registry address="192.168.88.131:2181" protocol="zookeeper"></dubbo:registry>
-    <!-- 配置注解扫描，因为不使用aop功能，可以使用注解-->
-    <dubbo:annotation package="com.ego.manager.service.impl"/>
+    <!-- 配置注解扫描，因为不使用aop功能，可以使用dubbo的@Reference注解-->
+    <dubbo:annotation package="com.ego.portal.service.impl"/>
     
 </beans>
 
