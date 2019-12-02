@@ -1,12 +1,17 @@
 package com.ego.manager.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ego.commons.pojo.EasyUiTree;
+import com.ego.commons.pojo.EgoResult;
+import com.ego.commons.utils.IDUtils;
 import com.ego.dubbo.service.TbContentCategoryDubboService;
 import com.ego.manager.service.TbContentCategoryService;
 import com.ego.pojo.TbContentCategory;
@@ -29,6 +34,40 @@ public class TbContentCategoryServiceImpl implements TbContentCategoryService{
 			listTree.add(tree);
 		}
 		return listTree;
+	}
+
+	@Override
+	public EgoResult create(TbContentCategory cate) {
+		EgoResult er = new EgoResult();
+		//判断当前节点名称是否已经存在
+		List<TbContentCategory> children = tbContentCategoryDubboService.selByPid(cate.getParentId());
+		for (TbContentCategory child : children) {
+			if(child.getName().equals(cate.getName())) {
+				er.setData("改分类名称已存在");
+				return er;
+			}
+		}
+		
+		Date date = new Date();
+		cate.setCreated(date);
+		cate.setUpdated(date);
+		cate.setStatus(1);
+		cate.setSortOrder(1);
+		cate.setIsParent(false);
+		long id = IDUtils.genItemId();
+		cate.setId(id);
+		int index = tbContentCategoryDubboService.insTbContenCategory(cate);
+		if(index >0) {
+			TbContentCategory parent = new TbContentCategory();
+			parent.setId(cate.getParentId());
+			parent.setIsParent(true);
+			tbContentCategoryDubboService.updIsParentById(parent);
+		}
+		er.setStatus(200);
+		Map<String,Long> map = new HashMap<>();
+		map.put("id", id);
+		er.setData(map);
+		return er;
 	}
 
 }

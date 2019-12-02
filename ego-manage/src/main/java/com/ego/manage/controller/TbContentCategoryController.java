@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ego.commons.pojo.EasyUiTree;
+import com.ego.commons.pojo.EgoResult;
 import com.ego.manager.service.TbContentCategoryService;
+import com.ego.pojo.TbContentCategory;
 
 @Controller
 public class TbContentCategoryController {
@@ -22,6 +24,13 @@ public class TbContentCategoryController {
 	@ResponseBody
 	public List<EasyUiTree> showCategory(@RequestParam(defaultValue="0")long id){
 		return tbContentCategoryService.showCategory(id);
+	}
+	
+	
+	@RequestMapping("content/category/create")
+	@ResponseBody
+	public EgoResult create(TbContentCategory cate) {
+		return tbContentCategoryService.create(cate);
 	}
 	
 }

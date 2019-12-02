@@ -20,8 +20,19 @@ public class TbContentCategoryDubboServiceImpl implements TbContentCategoryDubbo
 	@Override
 	public List<TbContentCategory> selByPid(long pid) {
 		TbContentCategoryExample example = new TbContentCategoryExample();
-		example.createCriteria().andParentIdEqualTo(pid);
+		example.createCriteria().andParentIdEqualTo(pid).andStatusEqualTo(1);
 		return tbContentCategoryMapper.selectByExample(example);
+	}
+
+	@Override
+	public int insTbContenCategory(TbContentCategory cate) {
+		return tbContentCategoryMapper.insertSelective(cate);
+	}
+
+	@Override
+	public int updIsParentById(TbContentCategory cate) {
+		// TODO Auto-generated method stub
+		return tbContentCategoryMapper.updateByPrimaryKeySelective(cate);
 	}
 
 }
