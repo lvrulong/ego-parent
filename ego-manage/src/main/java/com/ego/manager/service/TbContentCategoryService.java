@@ -19,4 +19,17 @@ public interface TbContentCategoryService {
 	 * @return
 	 */
 	EgoResult create(TbContentCategory cate);
+	
+	/**
+	 * 类目重命名
+	 */
+	EgoResult update(TbContentCategory cate);
+	
+	
+	/**
+	 * 删除类目-逻辑删除
+	 */
+	EgoResult delete(TbContentCategory cate);
+	
+	
 }

@@ -35,4 +35,9 @@ public class TbContentCategoryDubboServiceImpl implements TbContentCategoryDubbo
 		return tbContentCategoryMapper.updateByPrimaryKeySelective(cate);
 	}
 
+	@Override
+	public TbContentCategory selById(long id) {
+		return tbContentCategoryMapper.selectByPrimaryKey(id);
+	}
+
 }

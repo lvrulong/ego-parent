@@ -70,4 +70,46 @@ public class TbContentCategoryServiceImpl implements TbContentCategoryService{
 		return er;
 	}
 
+	@Override
+	public EgoResult update(TbContentCategory cate) {
+		EgoResult er = new EgoResult();
+		//查询当前节点信息
+		TbContentCategory cateSelect = tbContentCategoryDubboService.selById(cate.getId());
+		//判断当前节点名称是否已经存在
+		List<TbContentCategory> children = tbContentCategoryDubboService.selByPid(cateSelect.getParentId());
+		for (TbContentCategory child : children) {
+			if(child.getName().equals(cate.getName())) {
+				er.setData("改分类名称已存在");
+				return er;
+			}
+		}
+		
+		Date date = new Date();
+		cate.setUpdated(date);
+		int index = tbContentCategoryDubboService.updIsParentById(cate);
+		if(index>0) {
+			er.setStatus(200);
+		}
+		return er;
+	}
+
+	@Override
+	public EgoResult delete(TbContentCategory cate) {
+		EgoResult er = new EgoResult();
+		cate.setStatus(2);
+		int index = tbContentCategoryDubboService.updIsParentById(cate);
+		if(index>0) {
+			//查询当前节点信息
+			TbContentCategory curr = tbContentCategoryDubboService.selById(cate.getId());
+			List<TbContentCategory> children = tbContentCategoryDubboService.selByPid(curr.getParentId());
+			if(children == null || children.size()==0) {
+				TbContentCategory parent = tbContentCategoryDubboService.selById(curr.getParentId());
+				parent.setIsParent(false);
+				tbContentCategoryDubboService.updIsParentById(parent);
+			}
+			er.setStatus(200);
+		}
+		return er;
+	}
+
 }

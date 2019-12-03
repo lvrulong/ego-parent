@@ -23,6 +23,11 @@ public interface TbContentCategoryDubboService {
 	 * 
 	 * @return
 	 */
-
 	int updIsParentById(TbContentCategory cate);
+	
+	
+	/**
+	 * 通过id查询内容类目详细信息
+	 */
+	TbContentCategory selById(long id);
 }

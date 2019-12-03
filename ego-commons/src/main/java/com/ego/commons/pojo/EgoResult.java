@@ -1,6 +1,13 @@
 package com.ego.commons.pojo;
 
-public class EgoResult {
+import java.io.Serializable;
+
+public class EgoResult implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int status;
 	
 	private Object data;

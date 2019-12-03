@@ -41,8 +41,11 @@
     <!-- 内容分类 -->
     <dubbo:service interface="com.ego.dubbo.service.TbContentCategoryDubboService" ref="tbContentCategoryDubboServiceImpl" timeout="10000000"></dubbo:service>
     <bean id="tbContentCategoryDubboServiceImpl" class="com.ego.dubbo.service.impl.TbContentCategoryDubboServiceImpl"></bean>
+ 
+    <!-- 内容 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbContentDubboService" ref="tbContentDubboServiceImpl" timeout="10000000"></dubbo:service>
+    <bean id="tbContentDubboServiceImpl" class="com.ego.dubbo.service.impl.TbContentDubboServiceImpl"></bean>   
   
-    
     <!-- 加载spring配置文件 -->
     <import resource="../../applicationContext.xml"/>
 </beans>
