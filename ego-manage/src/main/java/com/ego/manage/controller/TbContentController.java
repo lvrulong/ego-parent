@@ -1,5 +1,7 @@
 package com.ego.manage.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,11 @@ public class TbContentController {
 	@RequestMapping("content/save")
 	@ResponseBody
 	public EgoResult save(TbContent tbContent) {
-		return tbContentService.save(tbContent);
+		EgoResult er = new EgoResult();
+		int index = tbContentService.save(tbContent);
+		if(index > 0) {
+			er.setStatus(200);
+		}
+		return er;
 	}
 }

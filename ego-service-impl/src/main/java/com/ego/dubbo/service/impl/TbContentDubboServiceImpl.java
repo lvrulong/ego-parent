@@ -38,16 +38,24 @@ public class TbContentDubboServiceImpl implements TbContentDubboService{
 	}
 
 	@Override
-	public EgoResult insContent(TbContent tbContent) {
-		EgoResult er = new EgoResult();
-		Date date = new Date();
-		tbContent.setCreated(date);
-		tbContent.setUpdated(date);
-		int index = tbContentMapper.insertSelective(tbContent);
-		if(index > 0) {
-			er.setStatus(200);
+	public int insContent(TbContent tbContent) {
+		return tbContentMapper.insertSelective(tbContent);
+	}
+
+	@Override
+	public List<TbContent> selByCount(int count, boolean isSort) {
+		TbContentExample example = new TbContentExample();
+		if(isSort) {
+			example.setOrderByClause("updated desc");
 		}
-		return er;
+		if(count!=0) {
+			PageHelper.startPage(1, count);
+			List<TbContent> list = tbContentMapper.selectByExample(example);
+			PageInfo<TbContent> pi = new PageInfo<>(list);
+			return pi.getList();
+		}else {
+			return tbContentMapper.selectByExampleWithBLOBs(example);
+		}
 	}
 
 }

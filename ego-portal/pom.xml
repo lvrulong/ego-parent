@@ -8,16 +8,32 @@
   <artifactId>ego-portal</artifactId>
   <packaging>war</packaging>
       <dependencies>
+  
+      <!-- 依赖接口 -->
        <dependency>
            <groupId>com.ego</groupId>
            <artifactId>ego-service</artifactId>
            <version>0.0.1-SNAPSHOT</version>                
        </dependency>
+       
+       <!-- ego-redis-->
+       <dependency>
+           <groupId>com.ego</groupId>
+           <artifactId>ego-redis</artifactId>
+           <version>0.0.1-SNAPSHOT</version>                
+       </dependency>  
+       
        <!-- 分页插件,调用provider是有警告，所以加入此依赖 -->
       <dependency>
           <groupId>com.github.pagehelper</groupId>
           <artifactId>pagehelper</artifactId>
       </dependency>
+      <!-- 依赖Commons -->
+       <dependency>
+           <groupId>com.ego</groupId>
+           <artifactId>ego-commons</artifactId>
+           <version>0.0.1-SNAPSHOT</version>                
+       </dependency>     
        <!-- jedis -->
        <dependency>
            <groupId>redis.clients</groupId>

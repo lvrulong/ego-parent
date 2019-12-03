@@ -20,5 +20,5 @@ public interface TbContentService {
 	 * @param tbContent
 	 * @return
 	 */
-	EgoResult save(TbContent tbContent);
+	int save(TbContent tbContent);
 }

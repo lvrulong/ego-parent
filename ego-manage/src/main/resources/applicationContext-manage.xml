@@ -16,5 +16,5 @@
     <!-- 注解扫描,让@Service生效 -->
     <context:component-scan base-package="com.ego.*.service.impl"></context:component-scan> 
     <!-- 整个项目最多出现一次， classpath*:扫描所有的包文件，包括依赖的包文件的资源文件-->
-    <context:property-placeholder location="classpath*:commons.properties"/>
+    <context:property-placeholder location="classpath*:*properties"/>
 </beans>
