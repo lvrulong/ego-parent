@@ -23,10 +23,18 @@
         <tomcat-version>2.2</tomcat-version>
         <pagehelper-version>4.1.6</pagehelper-version>
         <ftpclient-version>3.3</ftpclient-version>
-        <java.version>1.7</java.version>
+        <java-version>1.7</java-version>
+        <solr-version>5.3.1</solr-version>
     </properties>
     <dependencyManagement>
         <dependencies>
+        <!-- solrj -->
+       <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>${solr-version}</version>
+        </dependency>
+        
             <!-- ftpclient -->
             <dependency>
                 <groupId>commons-net</groupId>
@@ -172,8 +180,8 @@
                <plugin>
                    <artifactId>maven-compiler-plugin</artifactId>
                    <configuration>
-                   <source>${java.version}</source>
-                   <target>${java.version}</target>
+                   <source>${java-version}</source>
+                   <target>${java-version}</target>
                    </configuration>
                </plugin> 
         </plugins>
@@ -187,5 +195,6 @@
         <module>ego-portal</module>
         <module>ego-item</module>
         <module>ego-redis</module>
+        <module>ego-search</module>
     </modules>
 </project>
