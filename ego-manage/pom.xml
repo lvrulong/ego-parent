@@ -8,7 +8,11 @@
   <artifactId>ego-manage</artifactId>
   <packaging>war</packaging>
           <dependencies>
-          
+          <!-- ftpclient -->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+            </dependency>           
 	        <!-- ego-redis-->
 	       <dependency>
 	           <groupId>com.ego</groupId>
