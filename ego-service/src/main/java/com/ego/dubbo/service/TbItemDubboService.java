@@ -44,4 +44,11 @@ public interface TbItemDubboService {
 	 * @return
 	 */
 	List<TbItem> selAllByStatus(byte status);
+	
+	/**
+	 * 根据主键查询
+	 * @param id
+	 * @return
+	 */
+	TbItem selById(long id);
 }

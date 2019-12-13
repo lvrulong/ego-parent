@@ -35,4 +35,5 @@ public interface TbItemParamDubboService {
 	 * @return
 	 */
 	int insParam(TbItemParam param);
+	
 }

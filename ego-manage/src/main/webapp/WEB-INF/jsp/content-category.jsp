@@ -39,7 +39,7 @@ $(function(){
             			});
         				$.messager.alert('提示','创建'+node.text+' 分类成功!');
         			}else{
-        				$.messager.alert('提示','创建'+node.text+' 分类失败!<br/>原因：'+data.data);
+        				$.messager.alert('提示','创建'+node.text+' 分类失败!<br/> 原因:'+data.data);
         				_tree.tree("remove",node.target);
         			}
         		});
@@ -48,7 +48,7 @@ $(function(){
         			if(data.status == 200){
         				$.messager.alert('提示','修改'+node.text+' 分类成功!');
         			}else{
-        				$.messager.alert('提示','修改'+node.text+' 分类失败!<br/>原因：'+data.data);
+        				$.messager.alert('提示','修改'+node.text+' 分类失败!');
         				_tree.tree("update",{
             				target : node.target,
             				text:oldMenuName

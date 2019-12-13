@@ -8,6 +8,12 @@
   <artifactId>ego-item</artifactId>
   <packaging>war</packaging>
           <dependencies>
+          <!-- redis依赖 -->
+             <dependency>
+                <groupId>com.ego</groupId>
+                <artifactId>ego-redis</artifactId>
+            </dependency>         
+          
             <dependency>
                 <groupId>com.ego</groupId>
                 <artifactId>ego-service</artifactId>

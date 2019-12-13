@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -19,13 +20,13 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ego.commons.pojo.TbItemChild;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.dubbo.service.TbItemDescDubboService;
 import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemCat;
 import com.ego.pojo.TbItemDesc;
-import com.ego.search.pojo.TbItemChild;
 import com.ego.search.service.TbItemService;
 
 @Service
@@ -54,14 +55,14 @@ public class TbItemServiceImpl implements TbItemService {
 			TbItemDesc desc = tbItemDescDubboService.selByItemid(item.getId());
 
 			SolrInputDocument doc = new SolrInputDocument();
-			doc.addField("id", item.getId());
-			doc.addField("item_title", item.getTitle());
-			doc.addField("item_sell_point", item.getSellPoint());
-			doc.addField("item_price", item.getPrice());
-			doc.addField("item_image", item.getImage());
-			doc.addField("item_category_name", cat.getName());
-			doc.addField("item_desc", desc.getItemDesc());
-
+			doc.setField("id", item.getId());
+			doc.setField("item_title", item.getTitle());
+			doc.setField("item_sell_point", item.getSellPoint());
+			doc.setField("item_price", item.getPrice());
+			doc.setField("item_image", item.getImage());
+			doc.setField("item_category_name", cat.getName());
+			doc.setField("item_desc", desc.getItemDesc());
+			doc.setField("item_updated", item.getUpdated());
 			solrClient.add(doc);
 		}
 
@@ -85,7 +86,9 @@ public class TbItemServiceImpl implements TbItemService {
 		params.addHighlightField("item_title");
 		params.setHighlightSimplePre("<span style='color:red'>");
 		params.setHighlightSimplePost("</span>");
-
+		
+		//添加排序
+		params.setSort("item_updated",ORDER.desc);
 		
 		QueryResponse response = solrClient.query(params);
 		

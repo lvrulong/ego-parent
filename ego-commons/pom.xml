@@ -21,5 +21,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency> 
+        <!-- pojo -->
+        <dependency>
+		     <groupId>com.ego</groupId>
+		    <artifactId>ego-pojo</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>       
+        </dependency>
   </dependencies>
 </project>
