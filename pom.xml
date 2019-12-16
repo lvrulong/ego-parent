@@ -74,6 +74,8 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet-version}</version>
+                <!-- tomcat中也有servlet-api包，这样，发生了冲突
+                provided表明该包只在编译和测试的时候用，所以，当启动tomcat的时候，就不会冲突了 -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -213,5 +215,6 @@
         <module>ego-item</module>
         <module>ego-redis</module>
         <module>ego-search</module>
+        <module>ego-passport</module>
     </modules>
 </project>
