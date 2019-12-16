@@ -49,6 +49,10 @@
     <!-- 商品规格参数 -->
     <dubbo:service interface="com.ego.dubbo.service.TbItemParamItemDubboService" ref="tbItemParamItemDubboServiceImpl" timeout="10000000"></dubbo:service>
     <bean id="tbItemParamItemDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemParamItemDubboServiceImpl"></bean>   
+    
+     <!-- 用户 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbUserDubboService" ref="tbUserDubboServiceImpl" timeout="10000000"></dubbo:service>
+    <bean id="tbUserDubboServiceImpl" class="com.ego.dubbo.service.impl.TbUserDubboServiceImpl"></bean>   
   
     <!-- 加载spring配置文件 -->
     <import resource="../../applicationContext.xml"/>

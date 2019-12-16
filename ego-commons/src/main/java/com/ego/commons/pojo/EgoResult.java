@@ -12,6 +12,8 @@ public class EgoResult implements Serializable{
 	
 	private Object data;
 	
+	private String msg;
+	
 	public int getStatus() {
 		return status;
 	}
@@ -27,6 +29,20 @@ public class EgoResult implements Serializable{
 	public void setData(Object data) {
 		this.data = data;
 	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 	
 }
