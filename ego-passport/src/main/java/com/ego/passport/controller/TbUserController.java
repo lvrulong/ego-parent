@@ -21,22 +21,30 @@ public class TbUserController {
 
 	@Resource
 	private TbUserService tbUserService;
-	
+
 	/**
 	 * 显示登录页面
+	 * 
 	 * @param url
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("user/showLogin")
-	public String showLogin(@RequestHeader("Referer")String url, Model model) {
-		//记录跳转过来的地址
-		model.addAttribute("redirect",url);
+	public String showLogin(@RequestHeader(value = "Referer", defaultValue = "") String url, Model model,
+			String interurl) {
+		if (interurl != null && !interurl.equals("")) {
+			model.addAttribute("redirect", interurl);
+//			System.out.println("interurl" + interurl);
+		} else if (!url.equals("")) {
+			model.addAttribute("redirect", url);
+//			System.out.println("url" + url);
+		}
 		return "login";
 	}
 
 	/**
 	 * 登录
+	 * 
 	 * @param user
 	 * @param request
 	 * @param response
@@ -48,27 +56,29 @@ public class TbUserController {
 
 		return tbUserService.login(user, request, response);
 	}
-	
+
 	/**
 	 * 通过token获取用户信息
+	 * 
 	 * @param token
 	 * @param callback
 	 * @return
 	 */
 	@RequestMapping("user/token/{token}")
 	@ResponseBody
-	public Object getUserInfo(@PathVariable String token,String callback) {
+	public Object getUserInfo(@PathVariable String token, String callback) {
 		EgoResult er = tbUserService.getUserInfoByToken(token);
-		if(callback != null && !callback.equals("")) {
+		if (callback != null && !callback.equals("")) {
 			MappingJacksonValue mjv = new MappingJacksonValue(er);
 			mjv.setJsonpFunction(callback);
 			return mjv;
 		}
 		return er;
 	}
-	
+
 	/**
 	 * 退出
+	 * 
 	 * @param token
 	 * @param callback
 	 * @param request
@@ -77,9 +87,10 @@ public class TbUserController {
 	 */
 	@RequestMapping("user/logout/{token}")
 	@ResponseBody
-	public Object logout(@PathVariable String token,String callback, HttpServletRequest request, HttpServletResponse response) {
+	public Object logout(@PathVariable String token, String callback, HttpServletRequest request,
+			HttpServletResponse response) {
 		EgoResult er = tbUserService.logout(token, request, response);
-		if(callback != null && !callback.equals("")) {
+		if (callback != null && !callback.equals("")) {
 			MappingJacksonValue mjv = new MappingJacksonValue(er);
 			mjv.setJsonpFunction(callback);
 			return mjv;
