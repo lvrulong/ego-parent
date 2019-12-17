@@ -1,4 +1,4 @@
-package com.ego.cart.interceptor;
+package com.ego.order.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,8 @@ import com.ego.commons.utils.CookieUtils;
 import com.ego.commons.utils.HttpClientUtil;
 import com.ego.commons.utils.JsonUtils;
 
-public class LoginInterceptor implements HandlerInterceptor {
+public class OrderInterceptor implements HandlerInterceptor {
+
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
@@ -37,11 +38,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 		String num = request.getParameter("num");
-		if (num != null && !num.equals("")) {
-			response.sendRedirect("http://localhost:8084/user/showLogin?interurl=" + request.getRequestURL() + "%3Fnum=" + num);
-		} else {
-			response.sendRedirect("http://localhost:8084/user/showLogin");
-		}
+		response.sendRedirect(
+				"http://localhost:8084/user/showLogin?interurl=" + request.getRequestURL() + "%3Fnum=" + num);
 		return false;
 	}
 
