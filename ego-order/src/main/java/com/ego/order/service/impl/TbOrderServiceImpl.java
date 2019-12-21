@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.ego.commons.pojo.EgoResult;
 import com.ego.commons.pojo.TbItemChild;
 import com.ego.commons.utils.CookieUtils;
 import com.ego.commons.utils.HttpClientUtil;
 import com.ego.commons.utils.JsonUtils;
+import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.order.service.TbOrderService;
+import com.ego.pojo.TbItem;
 import com.ego.redis.dao.JedisDao;
 
 @Service
@@ -23,6 +26,9 @@ public class TbOrderServiceImpl implements TbOrderService {
 
 	@Resource
 	private JedisDao jedisDao;
+
+	@Reference
+	private TbItemDubboService tbItemDubboService;
 
 	@Value("${cart.key}")
 	private String cartKey;
@@ -42,6 +48,13 @@ public class TbOrderServiceImpl implements TbOrderService {
 		for (TbItemChild child : list) {
 			for (Long id : ids) {
 				if ((long) child.getId() == (long) id) {
+					// 判断购买量是否大于库存
+					TbItem tbItem = tbItemDubboService.selById(id);
+					if (tbItem.getNum() > child.getNum()) {
+						child.setEnough(true);
+					} else {
+						child.setEnough(false);
+					}
 					listNew.add(child);
 				}
 			}
