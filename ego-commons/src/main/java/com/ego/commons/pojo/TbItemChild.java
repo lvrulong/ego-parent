@@ -5,6 +5,11 @@ import com.ego.pojo.TbItem;
 public class TbItemChild extends TbItem{
 
 	private String[] images;
+	
+	/**
+	 * 判断库存
+	 */
+	private Boolean enough;
 
 	public String[] getImages() {
 		return images;
@@ -14,5 +19,14 @@ public class TbItemChild extends TbItem{
 		this.images = images;
 	}
 
+	public Boolean getEnough() {
+		return enough;
+	}
+
+	public void setEnough(Boolean enough) {
+		this.enough = enough;
+	}
+
+	
 	
 }
