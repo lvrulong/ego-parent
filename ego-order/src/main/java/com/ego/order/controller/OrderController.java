@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ego.commons.pojo.EgoResult;
 import com.ego.order.pojo.MyOrderParam;
 import com.ego.order.service.TbOrderService;
 
@@ -33,8 +34,13 @@ public class OrderController {
 	}
 
 	@RequestMapping("order/create.html")
-	public String create(MyOrderParam param) {
-		System.out.println(param);
-		return "my-orders";
+	public String create(MyOrderParam param,HttpServletRequest request) {
+		EgoResult er = tbOrderService.create(param, request);
+		if(er.getStatus()==200) {
+			return "my-orders";
+		}else {
+			request.setAttribute("message", "订单创建失败！");
+			return "error/exception";
+		}
 	}
 }

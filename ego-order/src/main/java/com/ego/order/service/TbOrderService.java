@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ego.commons.pojo.EgoResult;
 import com.ego.commons.pojo.TbItemChild;
+import com.ego.order.pojo.MyOrderParam;
 
 public interface TbOrderService {
 	
@@ -13,4 +15,11 @@ public interface TbOrderService {
 	 * @return
 	 */
 	List<TbItemChild> showOrderCart(List<Long> ids,HttpServletRequest request);
+	
+	/**
+	 * 创建订单
+	 * @param param
+	 * @return
+	 */
+	EgoResult create(MyOrderParam param, HttpServletRequest request);
 }
