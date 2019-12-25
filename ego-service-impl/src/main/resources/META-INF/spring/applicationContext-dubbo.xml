@@ -52,7 +52,11 @@
     
      <!-- 用户 -->
     <dubbo:service interface="com.ego.dubbo.service.TbUserDubboService" ref="tbUserDubboServiceImpl" timeout="10000000"></dubbo:service>
-    <bean id="tbUserDubboServiceImpl" class="com.ego.dubbo.service.impl.TbUserDubboServiceImpl"></bean>   
+    <bean id="tbUserDubboServiceImpl" class="com.ego.dubbo.service.impl.TbUserDubboServiceImpl"></bean>  
+
+    <!-- 订单 -->
+    <dubbo:service interface="com.ego.dubbo.service.TbOrderDubboService" ref="tbOrderDubboServiceImpl" timeout="10000000"></dubbo:service>
+    <bean id="tbOrderDubboServiceImpl" class="com.ego.dubbo.service.impl.TbOrderDubboServiceImpl"></bean>   
   
     <!-- 加载spring配置文件 -->
     <import resource="../../applicationContext.xml"/>

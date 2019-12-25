@@ -46,6 +46,7 @@
 		<input type="hidden" name="orderShipping.receiverCity" value="北京"/>
 		<input type="hidden" name="orderShipping.receiverDistrict" value="昌平区"/>
 		<input type="hidden" name="orderShipping.receiverAddress" value="西三旗 xxxxxxxxx"/>
+		<input type="hidden" name="orderShipping.receiverZip" value="100000"/>
 </form>
 
 <!-- main -->
@@ -86,6 +87,7 @@
 						</div>
 						<div class="mt10" limit="15">北京 昌平区 五环外六环里</div>
 						<div class="adr-m" limit="30">西三旗 xxxxxxxxx</div>
+						<div>100000</div>
 						<div class="op-btns ar">
 							<a href="#none"
 								class="ftx-05 mr10 setdefault-consignee hide"
